@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="bee354e1995d42cd9d53a42146539e02" Name="Diagram1">
-        <EntityTypeShape EntityType="Drummond01Model.Areas" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Drummond01Model.AreaSubareas" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Drummond01Model.CargosSet" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Drummond01Model.DepartamentoAreaSet" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
@@ -17,9 +16,6 @@
         <EntityTypeShape EntityType="Drummond01Model.SedeSet" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Drummond01Model.SubareaSet" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Drummond01Model.sysdiagrams" Width="1.5" PointX="5.75" PointY="3" IsExpanded="true" />
-        <AssociationConnector Association="Drummond01Model.FK_AreaAreaSubarea" ManuallyRouted="false" />
-        <AssociationConnector Association="Drummond01Model.FK_AreaDepartamentoArea" ManuallyRouted="false" />
-        <AssociationConnector Association="Drummond01Model.FK_AreaGrupoArea" ManuallyRouted="false" />
         <AssociationConnector Association="Drummond01Model.FK_SubareaAreaSubarea" ManuallyRouted="false" />
         <AssociationConnector Association="Drummond01Model.FK_CargosEmpleados" ManuallyRouted="false" />
         <AssociationConnector Association="Drummond01Model.FK_departamentoDepartamentoArea" ManuallyRouted="false" />
@@ -28,6 +24,10 @@
         <AssociationConnector Association="Drummond01Model.FK_GrupoAreaEmpleados" ManuallyRouted="false" />
         <AssociationConnector Association="Drummond01Model.FK_GrupoGrupoArea" ManuallyRouted="false" />
         <AssociationConnector Association="Drummond01Model.FK_GrupoSubarea" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Drummond01Model.AreasD" Width="1.5" PointX="0.75" PointY="6.875" />
+        <AssociationConnector Association="Drummond01Model.FK_AreaAreaSubarea1" />
+        <AssociationConnector Association="Drummond01Model.FK_AreaDepartamentoArea1" />
+        <AssociationConnector Association="Drummond01Model.FK_AreaGrupoArea1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

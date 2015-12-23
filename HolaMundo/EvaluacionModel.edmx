@@ -4,8 +4,8 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Drummond01Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Areas">
+    <Schema Namespace="Drummond01Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AreasD">
           <Key>
             <PropertyRef Name="Cod" />
           </Key>
@@ -106,10 +106,10 @@
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_AreaAreaSubarea">
-          <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
+          <End Role="AreasD" Type="Self.AreasD" Multiplicity="1" />
           <End Role="AreaSubareas" Type="Self.AreaSubareas" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Areas">
+            <Principal Role="AreasD">
               <PropertyRef Name="Cod" />
             </Principal>
             <Dependent Role="AreaSubareas">
@@ -118,10 +118,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AreaDepartamentoArea">
-          <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
+          <End Role="AreasD" Type="Self.AreasD" Multiplicity="1" />
           <End Role="DepartamentoAreaSet" Type="Self.DepartamentoAreaSet" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Areas">
+            <Principal Role="AreasD">
               <PropertyRef Name="Cod" />
             </Principal>
             <Dependent Role="DepartamentoAreaSet">
@@ -130,10 +130,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AreaGrupoArea">
-          <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
+          <End Role="AreasD" Type="Self.AreasD" Multiplicity="1" />
           <End Role="GrupoAreas" Type="Self.GrupoAreas" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Areas">
+            <Principal Role="AreasD">
               <PropertyRef Name="Cod" />
             </Principal>
             <Dependent Role="GrupoAreas">
@@ -238,7 +238,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Drummond01ModelStoreContainer">
-          <EntitySet Name="Areas" EntityType="Self.Areas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AreasD" EntityType="Self.AreasD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AreaSubareas" EntityType="Self.AreaSubareas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CargosSet" EntityType="Self.CargosSet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DepartamentoAreaSet" EntityType="Self.DepartamentoAreaSet" Schema="dbo" store:Type="Tables" />
@@ -251,15 +251,15 @@
           <EntitySet Name="SubareaSet" EntityType="Self.SubareaSet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AreaAreaSubarea" Association="Self.FK_AreaAreaSubarea">
-            <End Role="Areas" EntitySet="Areas" />
+            <End Role="AreasD" EntitySet="AreasD" />
             <End Role="AreaSubareas" EntitySet="AreaSubareas" />
           </AssociationSet>
           <AssociationSet Name="FK_AreaDepartamentoArea" Association="Self.FK_AreaDepartamentoArea">
-            <End Role="Areas" EntitySet="Areas" />
+            <End Role="AreasD" EntitySet="AreasD" />
             <End Role="DepartamentoAreaSet" EntitySet="DepartamentoAreaSet" />
           </AssociationSet>
           <AssociationSet Name="FK_AreaGrupoArea" Association="Self.FK_AreaGrupoArea">
-            <End Role="Areas" EntitySet="Areas" />
+            <End Role="AreasD" EntitySet="AreasD" />
             <End Role="GrupoAreas" EntitySet="GrupoAreas" />
           </AssociationSet>
           <AssociationSet Name="FK_CargosEmpleados" Association="Self.FK_CargosEmpleados">
@@ -295,21 +295,10 @@
             <End Role="AreaSubareas" EntitySet="AreaSubareas" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Drummond01Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Areas">
-          <Key>
-            <PropertyRef Name="Cod" />
-          </Key>
-          <Property Name="Cod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AreaSubareas" Relationship="Self.FK_AreaAreaSubarea" FromRole="Areas" ToRole="AreaSubareas" />
-          <NavigationProperty Name="DepartamentoAreaSet" Relationship="Self.FK_AreaDepartamentoArea" FromRole="Areas" ToRole="DepartamentoAreaSet" />
-          <NavigationProperty Name="GrupoAreas" Relationship="Self.FK_AreaGrupoArea" FromRole="Areas" ToRole="GrupoAreas" />
-        </EntityType>
         <EntityType Name="AreaSubareas">
           <Key>
             <PropertyRef Name="IdAreaSubarea" />
@@ -317,8 +306,8 @@
           <Property Name="IdAreaSubarea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AreaCod" Type="Int32" Nullable="false" />
           <Property Name="SubareaId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Areas" Relationship="Self.FK_AreaAreaSubarea" FromRole="AreaSubareas" ToRole="Areas" />
           <NavigationProperty Name="SubareaSet" Relationship="Self.FK_SubareaAreaSubarea" FromRole="AreaSubareas" ToRole="SubareaSet" />
+          <NavigationProperty Name="AreasD" Relationship="Drummond01Model.FK_AreaAreaSubarea1" FromRole="AreaSubareas" ToRole="AreasD" />
         </EntityType>
         <EntityType Name="CargosSet">
           <Key>
@@ -337,8 +326,8 @@
           <Property Name="IdDepArea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="departamentoId" Type="Int32" Nullable="false" />
           <Property Name="AreaCod" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Areas" Relationship="Self.FK_AreaDepartamentoArea" FromRole="DepartamentoAreaSet" ToRole="Areas" />
           <NavigationProperty Name="departamentoSet" Relationship="Self.FK_departamentoDepartamentoArea" FromRole="DepartamentoAreaSet" ToRole="departamentoSet" />
+          <NavigationProperty Name="AreasD" Relationship="Drummond01Model.FK_AreaDepartamentoArea1" FromRole="DepartamentoAreaSet" ToRole="AreasD" />
         </EntityType>
         <EntityType Name="DepartamentoSedeSet">
           <Key>
@@ -381,9 +370,9 @@
           <Property Name="IdGrupoArea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AreaCod" Type="Int32" Nullable="false" />
           <Property Name="GrupoId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Areas" Relationship="Self.FK_AreaGrupoArea" FromRole="GrupoAreas" ToRole="Areas" />
           <NavigationProperty Name="EmpleadosSet" Relationship="Self.FK_GrupoAreaEmpleados" FromRole="GrupoAreas" ToRole="EmpleadosSet" />
           <NavigationProperty Name="GrupoSet" Relationship="Self.FK_GrupoGrupoArea" FromRole="GrupoAreas" ToRole="GrupoSet" />
+          <NavigationProperty Name="AreasD" Relationship="Drummond01Model.FK_AreaGrupoArea1" FromRole="GrupoAreas" ToRole="AreasD" />
         </EntityType>
         <EntityType Name="GrupoSet">
           <Key>
@@ -422,42 +411,6 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <Association Name="FK_AreaAreaSubarea">
-          <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
-          <End Role="AreaSubareas" Type="Self.AreaSubareas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Areas">
-              <PropertyRef Name="Cod" />
-            </Principal>
-            <Dependent Role="AreaSubareas">
-              <PropertyRef Name="AreaCod" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AreaDepartamentoArea">
-          <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
-          <End Role="DepartamentoAreaSet" Type="Self.DepartamentoAreaSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Areas">
-              <PropertyRef Name="Cod" />
-            </Principal>
-            <Dependent Role="DepartamentoAreaSet">
-              <PropertyRef Name="AreaCod" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AreaGrupoArea">
-          <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
-          <End Role="GrupoAreas" Type="Self.GrupoAreas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Areas">
-              <PropertyRef Name="Cod" />
-            </Principal>
-            <Dependent Role="GrupoAreas">
-              <PropertyRef Name="AreaCod" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SubareaAreaSubarea">
           <End Role="SubareaSet" Type="Self.SubareaSet" Multiplicity="1" />
           <End Role="AreaSubareas" Type="Self.AreaSubareas" Multiplicity="*" />
@@ -555,7 +508,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Drummond01Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Areas" EntityType="Self.Areas" />
           <EntitySet Name="AreaSubareas" EntityType="Self.AreaSubareas" />
           <EntitySet Name="CargosSet" EntityType="Self.CargosSet" />
           <EntitySet Name="DepartamentoAreaSet" EntityType="Self.DepartamentoAreaSet" />
@@ -567,18 +519,6 @@
           <EntitySet Name="SedeSet" EntityType="Self.SedeSet" />
           <EntitySet Name="SubareaSet" EntityType="Self.SubareaSet" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <AssociationSet Name="FK_AreaAreaSubarea" Association="Self.FK_AreaAreaSubarea">
-            <End Role="Areas" EntitySet="Areas" />
-            <End Role="AreaSubareas" EntitySet="AreaSubareas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AreaDepartamentoArea" Association="Self.FK_AreaDepartamentoArea">
-            <End Role="Areas" EntitySet="Areas" />
-            <End Role="DepartamentoAreaSet" EntitySet="DepartamentoAreaSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AreaGrupoArea" Association="Self.FK_AreaGrupoArea">
-            <End Role="Areas" EntitySet="Areas" />
-            <End Role="GrupoAreas" EntitySet="GrupoAreas" />
-          </AssociationSet>
           <AssociationSet Name="FK_SubareaAreaSubarea" Association="Self.FK_SubareaAreaSubarea">
             <End Role="SubareaSet" EntitySet="SubareaSet" />
             <End Role="AreaSubareas" EntitySet="AreaSubareas" />
@@ -611,21 +551,72 @@
             <End Role="GrupoSet" EntitySet="GrupoSet" />
             <End Role="SubareaSet" EntitySet="SubareaSet" />
           </AssociationSet>
+          <EntitySet Name="AreasD" EntityType="Drummond01Model.AreasD" />
+          <AssociationSet Name="FK_AreaAreaSubarea1" Association="Drummond01Model.FK_AreaAreaSubarea1">
+            <End Role="AreasD" EntitySet="AreasD" />
+            <End Role="AreaSubareas" EntitySet="AreaSubareas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AreaDepartamentoArea1" Association="Drummond01Model.FK_AreaDepartamentoArea1">
+            <End Role="AreasD" EntitySet="AreasD" />
+            <End Role="DepartamentoAreaSet" EntitySet="DepartamentoAreaSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AreaGrupoArea1" Association="Drummond01Model.FK_AreaGrupoArea1">
+            <End Role="AreasD" EntitySet="AreasD" />
+            <End Role="GrupoAreas" EntitySet="GrupoAreas" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="AreasD">
+          <Key>
+            <PropertyRef Name="Cod" />
+          </Key>
+          <Property Name="Cod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AreaSubareas" Relationship="Drummond01Model.FK_AreaAreaSubarea1" FromRole="AreasD" ToRole="AreaSubareas" />
+          <NavigationProperty Name="DepartamentoAreaSet" Relationship="Drummond01Model.FK_AreaDepartamentoArea1" FromRole="AreasD" ToRole="DepartamentoAreaSet" />
+          <NavigationProperty Name="GrupoAreas" Relationship="Drummond01Model.FK_AreaGrupoArea1" FromRole="AreasD" ToRole="GrupoAreas" />
+        </EntityType>
+        <Association Name="FK_AreaAreaSubarea1">
+          <End Type="Drummond01Model.AreasD" Role="AreasD" Multiplicity="1" />
+          <End Type="Drummond01Model.AreaSubareas" Role="AreaSubareas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AreasD">
+              <PropertyRef Name="Cod" />
+            </Principal>
+            <Dependent Role="AreaSubareas">
+              <PropertyRef Name="AreaCod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AreaDepartamentoArea1">
+          <End Type="Drummond01Model.AreasD" Role="AreasD" Multiplicity="1" />
+          <End Type="Drummond01Model.DepartamentoAreaSet" Role="DepartamentoAreaSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AreasD">
+              <PropertyRef Name="Cod" />
+            </Principal>
+            <Dependent Role="DepartamentoAreaSet">
+              <PropertyRef Name="AreaCod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AreaGrupoArea1">
+          <End Type="Drummond01Model.AreasD" Role="AreasD" Multiplicity="1" />
+          <End Type="Drummond01Model.GrupoAreas" Role="GrupoAreas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AreasD">
+              <PropertyRef Name="Cod" />
+            </Principal>
+            <Dependent Role="GrupoAreas">
+              <PropertyRef Name="AreaCod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Drummond01ModelStoreContainer" CdmEntityContainer="Drummond01Entities">
-          <EntitySetMapping Name="Areas">
-            <EntityTypeMapping TypeName="Drummond01Model.Areas">
-              <MappingFragment StoreEntitySet="Areas">
-                <ScalarProperty Name="Cod" ColumnName="Cod" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AreaSubareas">
             <EntityTypeMapping TypeName="Drummond01Model.AreaSubareas">
               <MappingFragment StoreEntitySet="AreaSubareas">
@@ -727,6 +718,14 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AreasD">
+            <EntityTypeMapping TypeName="Drummond01Model.AreasD">
+              <MappingFragment StoreEntitySet="AreasD">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="Cod" ColumnName="Cod" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -12,9 +12,9 @@ namespace HolaMundo
     using System;
     using System.Collections.Generic;
     
-    public partial class Areas
+    public partial class AreasD
     {
-        public Areas()
+        public AreasD()
         {
             this.AreaSubareas = new HashSet<AreaSubareas>();
             this.DepartamentoAreaSet = new HashSet<DepartamentoAreaSet>();

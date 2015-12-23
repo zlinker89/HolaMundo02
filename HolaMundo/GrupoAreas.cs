@@ -23,8 +23,8 @@ namespace HolaMundo
         public int AreaCod { get; set; }
         public int GrupoId { get; set; }
     
-        public virtual Areas Areas { get; set; }
         public virtual ICollection<EmpleadosSet> EmpleadosSet { get; set; }
         public virtual GrupoSet GrupoSet { get; set; }
+        public virtual AreasD AreasD { get; set; }
     }
 }

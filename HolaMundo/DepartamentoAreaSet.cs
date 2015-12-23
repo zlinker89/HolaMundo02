@@ -18,7 +18,7 @@ namespace HolaMundo
         public int departamentoId { get; set; }
         public int AreaCod { get; set; }
     
-        public virtual Areas Areas { get; set; }
         public virtual departamentoSet departamentoSet { get; set; }
+        public virtual AreasD AreasD { get; set; }
     }
 }

@@ -25,7 +25,6 @@ namespace HolaMundo
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Areas> Areas { get; set; }
         public virtual DbSet<AreaSubareas> AreaSubareas { get; set; }
         public virtual DbSet<CargosSet> CargosSet { get; set; }
         public virtual DbSet<DepartamentoAreaSet> DepartamentoAreaSet { get; set; }
@@ -37,5 +36,6 @@ namespace HolaMundo
         public virtual DbSet<SedeSet> SedeSet { get; set; }
         public virtual DbSet<SubareaSet> SubareaSet { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<AreasD> AreasD { get; set; }
     }
 }
