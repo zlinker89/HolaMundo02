@@ -39,7 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\GrupoAreasDTO.cs" />
+    <Compile Include="DTOs\GrupoDTO.cs" />
     <Compile Include="DTOs\SedeDTO.cs" />
+    <Compile Include="DTOs\SubareaDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
