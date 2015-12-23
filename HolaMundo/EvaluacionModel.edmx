@@ -1,0 +1,756 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Drummond01Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Areas">
+          <Key>
+            <PropertyRef Name="Cod" />
+          </Key>
+          <Property Name="Cod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AreaSubareas">
+          <Key>
+            <PropertyRef Name="IdAreaSubarea" />
+          </Key>
+          <Property Name="IdAreaSubarea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AreaCod" Type="int" Nullable="false" />
+          <Property Name="SubareaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CargosSet">
+          <Key>
+            <PropertyRef Name="Cod" />
+          </Key>
+          <Property Name="Cod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="jefe" Type="int" Nullable="false" />
+          <Property Name="tipo_de_area" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DepartamentoAreaSet">
+          <Key>
+            <PropertyRef Name="IdDepArea" />
+          </Key>
+          <Property Name="IdDepArea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="departamentoId" Type="int" Nullable="false" />
+          <Property Name="AreaCod" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DepartamentoSedeSet">
+          <Key>
+            <PropertyRef Name="IdDepSede" />
+          </Key>
+          <Property Name="IdDepSede" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SedeId" Type="int" Nullable="false" />
+          <Property Name="departamentoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="departamentoSet">
+          <Key>
+            <PropertyRef Name="Cod" />
+          </Key>
+          <Property Name="Cod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmpleadosSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GrupoAreaIdGrupoArea" Type="int" Nullable="false" />
+          <Property Name="CargosCod" Type="int" Nullable="false" />
+          <Property Name="Nit" Type="int" Nullable="false" />
+          <Property Name="nombres" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="apellidos" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Lider" Type="bit" Nullable="false" />
+          <Property Name="JefeCod" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GrupoAreas">
+          <Key>
+            <PropertyRef Name="IdGrupoArea" />
+          </Key>
+          <Property Name="IdGrupoArea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AreaCod" Type="int" Nullable="false" />
+          <Property Name="GrupoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GrupoSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SedeSet">
+          <Key>
+            <PropertyRef Name="Cod" />
+          </Key>
+          <Property Name="Cod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubareaSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GrupoId" Type="int" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_AreaAreaSubarea">
+          <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
+          <End Role="AreaSubareas" Type="Self.AreaSubareas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="Cod" />
+            </Principal>
+            <Dependent Role="AreaSubareas">
+              <PropertyRef Name="AreaCod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AreaDepartamentoArea">
+          <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
+          <End Role="DepartamentoAreaSet" Type="Self.DepartamentoAreaSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="Cod" />
+            </Principal>
+            <Dependent Role="DepartamentoAreaSet">
+              <PropertyRef Name="AreaCod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AreaGrupoArea">
+          <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
+          <End Role="GrupoAreas" Type="Self.GrupoAreas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="Cod" />
+            </Principal>
+            <Dependent Role="GrupoAreas">
+              <PropertyRef Name="AreaCod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CargosEmpleados">
+          <End Role="CargosSet" Type="Self.CargosSet" Multiplicity="1" />
+          <End Role="EmpleadosSet" Type="Self.EmpleadosSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CargosSet">
+              <PropertyRef Name="Cod" />
+            </Principal>
+            <Dependent Role="EmpleadosSet">
+              <PropertyRef Name="CargosCod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_departamentoDepartamentoArea">
+          <End Role="departamentoSet" Type="Self.departamentoSet" Multiplicity="1" />
+          <End Role="DepartamentoAreaSet" Type="Self.DepartamentoAreaSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departamentoSet">
+              <PropertyRef Name="Cod" />
+            </Principal>
+            <Dependent Role="DepartamentoAreaSet">
+              <PropertyRef Name="departamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_departamentoDepartamentoSede">
+          <End Role="departamentoSet" Type="Self.departamentoSet" Multiplicity="1" />
+          <End Role="DepartamentoSedeSet" Type="Self.DepartamentoSedeSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departamentoSet">
+              <PropertyRef Name="Cod" />
+            </Principal>
+            <Dependent Role="DepartamentoSedeSet">
+              <PropertyRef Name="departamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GrupoAreaEmpleados">
+          <End Role="GrupoAreas" Type="Self.GrupoAreas" Multiplicity="1" />
+          <End Role="EmpleadosSet" Type="Self.EmpleadosSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrupoAreas">
+              <PropertyRef Name="IdGrupoArea" />
+            </Principal>
+            <Dependent Role="EmpleadosSet">
+              <PropertyRef Name="GrupoAreaIdGrupoArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GrupoGrupoArea">
+          <End Role="GrupoSet" Type="Self.GrupoSet" Multiplicity="1" />
+          <End Role="GrupoAreas" Type="Self.GrupoAreas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrupoSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GrupoAreas">
+              <PropertyRef Name="GrupoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GrupoSubarea">
+          <End Role="GrupoSet" Type="Self.GrupoSet" Multiplicity="0..1" />
+          <End Role="SubareaSet" Type="Self.SubareaSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrupoSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubareaSet">
+              <PropertyRef Name="GrupoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SedeDepartamentoSede">
+          <End Role="SedeSet" Type="Self.SedeSet" Multiplicity="1" />
+          <End Role="DepartamentoSedeSet" Type="Self.DepartamentoSedeSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SedeSet">
+              <PropertyRef Name="Cod" />
+            </Principal>
+            <Dependent Role="DepartamentoSedeSet">
+              <PropertyRef Name="SedeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubareaAreaSubarea">
+          <End Role="SubareaSet" Type="Self.SubareaSet" Multiplicity="1" />
+          <End Role="AreaSubareas" Type="Self.AreaSubareas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubareaSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AreaSubareas">
+              <PropertyRef Name="SubareaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Drummond01ModelStoreContainer">
+          <EntitySet Name="Areas" EntityType="Self.Areas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AreaSubareas" EntityType="Self.AreaSubareas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CargosSet" EntityType="Self.CargosSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DepartamentoAreaSet" EntityType="Self.DepartamentoAreaSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DepartamentoSedeSet" EntityType="Self.DepartamentoSedeSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="departamentoSet" EntityType="Self.departamentoSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmpleadosSet" EntityType="Self.EmpleadosSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GrupoAreas" EntityType="Self.GrupoAreas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GrupoSet" EntityType="Self.GrupoSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SedeSet" EntityType="Self.SedeSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubareaSet" EntityType="Self.SubareaSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AreaAreaSubarea" Association="Self.FK_AreaAreaSubarea">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="AreaSubareas" EntitySet="AreaSubareas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AreaDepartamentoArea" Association="Self.FK_AreaDepartamentoArea">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="DepartamentoAreaSet" EntitySet="DepartamentoAreaSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AreaGrupoArea" Association="Self.FK_AreaGrupoArea">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="GrupoAreas" EntitySet="GrupoAreas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CargosEmpleados" Association="Self.FK_CargosEmpleados">
+            <End Role="CargosSet" EntitySet="CargosSet" />
+            <End Role="EmpleadosSet" EntitySet="EmpleadosSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_departamentoDepartamentoArea" Association="Self.FK_departamentoDepartamentoArea">
+            <End Role="departamentoSet" EntitySet="departamentoSet" />
+            <End Role="DepartamentoAreaSet" EntitySet="DepartamentoAreaSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_departamentoDepartamentoSede" Association="Self.FK_departamentoDepartamentoSede">
+            <End Role="departamentoSet" EntitySet="departamentoSet" />
+            <End Role="DepartamentoSedeSet" EntitySet="DepartamentoSedeSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GrupoAreaEmpleados" Association="Self.FK_GrupoAreaEmpleados">
+            <End Role="GrupoAreas" EntitySet="GrupoAreas" />
+            <End Role="EmpleadosSet" EntitySet="EmpleadosSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GrupoGrupoArea" Association="Self.FK_GrupoGrupoArea">
+            <End Role="GrupoSet" EntitySet="GrupoSet" />
+            <End Role="GrupoAreas" EntitySet="GrupoAreas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GrupoSubarea" Association="Self.FK_GrupoSubarea">
+            <End Role="GrupoSet" EntitySet="GrupoSet" />
+            <End Role="SubareaSet" EntitySet="SubareaSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SedeDepartamentoSede" Association="Self.FK_SedeDepartamentoSede">
+            <End Role="SedeSet" EntitySet="SedeSet" />
+            <End Role="DepartamentoSedeSet" EntitySet="DepartamentoSedeSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubareaAreaSubarea" Association="Self.FK_SubareaAreaSubarea">
+            <End Role="SubareaSet" EntitySet="SubareaSet" />
+            <End Role="AreaSubareas" EntitySet="AreaSubareas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Drummond01Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Areas">
+          <Key>
+            <PropertyRef Name="Cod" />
+          </Key>
+          <Property Name="Cod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AreaSubareas" Relationship="Self.FK_AreaAreaSubarea" FromRole="Areas" ToRole="AreaSubareas" />
+          <NavigationProperty Name="DepartamentoAreaSet" Relationship="Self.FK_AreaDepartamentoArea" FromRole="Areas" ToRole="DepartamentoAreaSet" />
+          <NavigationProperty Name="GrupoAreas" Relationship="Self.FK_AreaGrupoArea" FromRole="Areas" ToRole="GrupoAreas" />
+        </EntityType>
+        <EntityType Name="AreaSubareas">
+          <Key>
+            <PropertyRef Name="IdAreaSubarea" />
+          </Key>
+          <Property Name="IdAreaSubarea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AreaCod" Type="Int32" Nullable="false" />
+          <Property Name="SubareaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Areas" Relationship="Self.FK_AreaAreaSubarea" FromRole="AreaSubareas" ToRole="Areas" />
+          <NavigationProperty Name="SubareaSet" Relationship="Self.FK_SubareaAreaSubarea" FromRole="AreaSubareas" ToRole="SubareaSet" />
+        </EntityType>
+        <EntityType Name="CargosSet">
+          <Key>
+            <PropertyRef Name="Cod" />
+          </Key>
+          <Property Name="Cod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="jefe" Type="Int32" Nullable="false" />
+          <Property Name="tipo_de_area" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="EmpleadosSet" Relationship="Self.FK_CargosEmpleados" FromRole="CargosSet" ToRole="EmpleadosSet" />
+        </EntityType>
+        <EntityType Name="DepartamentoAreaSet">
+          <Key>
+            <PropertyRef Name="IdDepArea" />
+          </Key>
+          <Property Name="IdDepArea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="departamentoId" Type="Int32" Nullable="false" />
+          <Property Name="AreaCod" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Areas" Relationship="Self.FK_AreaDepartamentoArea" FromRole="DepartamentoAreaSet" ToRole="Areas" />
+          <NavigationProperty Name="departamentoSet" Relationship="Self.FK_departamentoDepartamentoArea" FromRole="DepartamentoAreaSet" ToRole="departamentoSet" />
+        </EntityType>
+        <EntityType Name="DepartamentoSedeSet">
+          <Key>
+            <PropertyRef Name="IdDepSede" />
+          </Key>
+          <Property Name="IdDepSede" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SedeId" Type="Int32" Nullable="false" />
+          <Property Name="departamentoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="departamentoSet" Relationship="Self.FK_departamentoDepartamentoSede" FromRole="DepartamentoSedeSet" ToRole="departamentoSet" />
+          <NavigationProperty Name="SedeSet" Relationship="Self.FK_SedeDepartamentoSede" FromRole="DepartamentoSedeSet" ToRole="SedeSet" />
+        </EntityType>
+        <EntityType Name="departamentoSet">
+          <Key>
+            <PropertyRef Name="Cod" />
+          </Key>
+          <Property Name="Cod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DepartamentoAreaSet" Relationship="Self.FK_departamentoDepartamentoArea" FromRole="departamentoSet" ToRole="DepartamentoAreaSet" />
+          <NavigationProperty Name="DepartamentoSedeSet" Relationship="Self.FK_departamentoDepartamentoSede" FromRole="departamentoSet" ToRole="DepartamentoSedeSet" />
+        </EntityType>
+        <EntityType Name="EmpleadosSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GrupoAreaIdGrupoArea" Type="Int32" Nullable="false" />
+          <Property Name="CargosCod" Type="Int32" Nullable="false" />
+          <Property Name="Nit" Type="Int32" Nullable="false" />
+          <Property Name="nombres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellidos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lider" Type="Boolean" Nullable="false" />
+          <Property Name="JefeCod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CargosSet" Relationship="Self.FK_CargosEmpleados" FromRole="EmpleadosSet" ToRole="CargosSet" />
+          <NavigationProperty Name="GrupoAreas" Relationship="Self.FK_GrupoAreaEmpleados" FromRole="EmpleadosSet" ToRole="GrupoAreas" />
+        </EntityType>
+        <EntityType Name="GrupoAreas">
+          <Key>
+            <PropertyRef Name="IdGrupoArea" />
+          </Key>
+          <Property Name="IdGrupoArea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AreaCod" Type="Int32" Nullable="false" />
+          <Property Name="GrupoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Areas" Relationship="Self.FK_AreaGrupoArea" FromRole="GrupoAreas" ToRole="Areas" />
+          <NavigationProperty Name="EmpleadosSet" Relationship="Self.FK_GrupoAreaEmpleados" FromRole="GrupoAreas" ToRole="EmpleadosSet" />
+          <NavigationProperty Name="GrupoSet" Relationship="Self.FK_GrupoGrupoArea" FromRole="GrupoAreas" ToRole="GrupoSet" />
+        </EntityType>
+        <EntityType Name="GrupoSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="GrupoAreas" Relationship="Self.FK_GrupoGrupoArea" FromRole="GrupoSet" ToRole="GrupoAreas" />
+          <NavigationProperty Name="SubareaSet" Relationship="Self.FK_GrupoSubarea" FromRole="GrupoSet" ToRole="SubareaSet" />
+        </EntityType>
+        <EntityType Name="SedeSet">
+          <Key>
+            <PropertyRef Name="Cod" />
+          </Key>
+          <Property Name="Cod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DepartamentoSedeSet" Relationship="Self.FK_SedeDepartamentoSede" FromRole="SedeSet" ToRole="DepartamentoSedeSet" />
+        </EntityType>
+        <EntityType Name="SubareaSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GrupoId" Type="Int32" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AreaSubareas" Relationship="Self.FK_SubareaAreaSubarea" FromRole="SubareaSet" ToRole="AreaSubareas" />
+          <NavigationProperty Name="GrupoSet" Relationship="Self.FK_GrupoSubarea" FromRole="SubareaSet" ToRole="GrupoSet" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_AreaAreaSubarea">
+          <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
+          <End Role="AreaSubareas" Type="Self.AreaSubareas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="Cod" />
+            </Principal>
+            <Dependent Role="AreaSubareas">
+              <PropertyRef Name="AreaCod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AreaDepartamentoArea">
+          <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
+          <End Role="DepartamentoAreaSet" Type="Self.DepartamentoAreaSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="Cod" />
+            </Principal>
+            <Dependent Role="DepartamentoAreaSet">
+              <PropertyRef Name="AreaCod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AreaGrupoArea">
+          <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
+          <End Role="GrupoAreas" Type="Self.GrupoAreas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="Cod" />
+            </Principal>
+            <Dependent Role="GrupoAreas">
+              <PropertyRef Name="AreaCod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubareaAreaSubarea">
+          <End Role="SubareaSet" Type="Self.SubareaSet" Multiplicity="1" />
+          <End Role="AreaSubareas" Type="Self.AreaSubareas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubareaSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AreaSubareas">
+              <PropertyRef Name="SubareaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CargosEmpleados">
+          <End Role="CargosSet" Type="Self.CargosSet" Multiplicity="1" />
+          <End Role="EmpleadosSet" Type="Self.EmpleadosSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CargosSet">
+              <PropertyRef Name="Cod" />
+            </Principal>
+            <Dependent Role="EmpleadosSet">
+              <PropertyRef Name="CargosCod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_departamentoDepartamentoArea">
+          <End Role="departamentoSet" Type="Self.departamentoSet" Multiplicity="1" />
+          <End Role="DepartamentoAreaSet" Type="Self.DepartamentoAreaSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departamentoSet">
+              <PropertyRef Name="Cod" />
+            </Principal>
+            <Dependent Role="DepartamentoAreaSet">
+              <PropertyRef Name="departamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_departamentoDepartamentoSede">
+          <End Role="departamentoSet" Type="Self.departamentoSet" Multiplicity="1" />
+          <End Role="DepartamentoSedeSet" Type="Self.DepartamentoSedeSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departamentoSet">
+              <PropertyRef Name="Cod" />
+            </Principal>
+            <Dependent Role="DepartamentoSedeSet">
+              <PropertyRef Name="departamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SedeDepartamentoSede">
+          <End Role="SedeSet" Type="Self.SedeSet" Multiplicity="1" />
+          <End Role="DepartamentoSedeSet" Type="Self.DepartamentoSedeSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SedeSet">
+              <PropertyRef Name="Cod" />
+            </Principal>
+            <Dependent Role="DepartamentoSedeSet">
+              <PropertyRef Name="SedeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GrupoAreaEmpleados">
+          <End Role="GrupoAreas" Type="Self.GrupoAreas" Multiplicity="1" />
+          <End Role="EmpleadosSet" Type="Self.EmpleadosSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrupoAreas">
+              <PropertyRef Name="IdGrupoArea" />
+            </Principal>
+            <Dependent Role="EmpleadosSet">
+              <PropertyRef Name="GrupoAreaIdGrupoArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GrupoGrupoArea">
+          <End Role="GrupoSet" Type="Self.GrupoSet" Multiplicity="1" />
+          <End Role="GrupoAreas" Type="Self.GrupoAreas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrupoSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GrupoAreas">
+              <PropertyRef Name="GrupoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GrupoSubarea">
+          <End Role="GrupoSet" Type="Self.GrupoSet" Multiplicity="0..1" />
+          <End Role="SubareaSet" Type="Self.SubareaSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrupoSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubareaSet">
+              <PropertyRef Name="GrupoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Drummond01Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Areas" EntityType="Self.Areas" />
+          <EntitySet Name="AreaSubareas" EntityType="Self.AreaSubareas" />
+          <EntitySet Name="CargosSet" EntityType="Self.CargosSet" />
+          <EntitySet Name="DepartamentoAreaSet" EntityType="Self.DepartamentoAreaSet" />
+          <EntitySet Name="DepartamentoSedeSet" EntityType="Self.DepartamentoSedeSet" />
+          <EntitySet Name="departamentoSet" EntityType="Self.departamentoSet" />
+          <EntitySet Name="EmpleadosSet" EntityType="Self.EmpleadosSet" />
+          <EntitySet Name="GrupoAreas" EntityType="Self.GrupoAreas" />
+          <EntitySet Name="GrupoSet" EntityType="Self.GrupoSet" />
+          <EntitySet Name="SedeSet" EntityType="Self.SedeSet" />
+          <EntitySet Name="SubareaSet" EntityType="Self.SubareaSet" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_AreaAreaSubarea" Association="Self.FK_AreaAreaSubarea">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="AreaSubareas" EntitySet="AreaSubareas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AreaDepartamentoArea" Association="Self.FK_AreaDepartamentoArea">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="DepartamentoAreaSet" EntitySet="DepartamentoAreaSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AreaGrupoArea" Association="Self.FK_AreaGrupoArea">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="GrupoAreas" EntitySet="GrupoAreas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubareaAreaSubarea" Association="Self.FK_SubareaAreaSubarea">
+            <End Role="SubareaSet" EntitySet="SubareaSet" />
+            <End Role="AreaSubareas" EntitySet="AreaSubareas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CargosEmpleados" Association="Self.FK_CargosEmpleados">
+            <End Role="CargosSet" EntitySet="CargosSet" />
+            <End Role="EmpleadosSet" EntitySet="EmpleadosSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_departamentoDepartamentoArea" Association="Self.FK_departamentoDepartamentoArea">
+            <End Role="departamentoSet" EntitySet="departamentoSet" />
+            <End Role="DepartamentoAreaSet" EntitySet="DepartamentoAreaSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_departamentoDepartamentoSede" Association="Self.FK_departamentoDepartamentoSede">
+            <End Role="departamentoSet" EntitySet="departamentoSet" />
+            <End Role="DepartamentoSedeSet" EntitySet="DepartamentoSedeSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SedeDepartamentoSede" Association="Self.FK_SedeDepartamentoSede">
+            <End Role="SedeSet" EntitySet="SedeSet" />
+            <End Role="DepartamentoSedeSet" EntitySet="DepartamentoSedeSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GrupoAreaEmpleados" Association="Self.FK_GrupoAreaEmpleados">
+            <End Role="GrupoAreas" EntitySet="GrupoAreas" />
+            <End Role="EmpleadosSet" EntitySet="EmpleadosSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GrupoGrupoArea" Association="Self.FK_GrupoGrupoArea">
+            <End Role="GrupoSet" EntitySet="GrupoSet" />
+            <End Role="GrupoAreas" EntitySet="GrupoAreas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GrupoSubarea" Association="Self.FK_GrupoSubarea">
+            <End Role="GrupoSet" EntitySet="GrupoSet" />
+            <End Role="SubareaSet" EntitySet="SubareaSet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Drummond01ModelStoreContainer" CdmEntityContainer="Drummond01Entities">
+          <EntitySetMapping Name="Areas">
+            <EntityTypeMapping TypeName="Drummond01Model.Areas">
+              <MappingFragment StoreEntitySet="Areas">
+                <ScalarProperty Name="Cod" ColumnName="Cod" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AreaSubareas">
+            <EntityTypeMapping TypeName="Drummond01Model.AreaSubareas">
+              <MappingFragment StoreEntitySet="AreaSubareas">
+                <ScalarProperty Name="IdAreaSubarea" ColumnName="IdAreaSubarea" />
+                <ScalarProperty Name="AreaCod" ColumnName="AreaCod" />
+                <ScalarProperty Name="SubareaId" ColumnName="SubareaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CargosSet">
+            <EntityTypeMapping TypeName="Drummond01Model.CargosSet">
+              <MappingFragment StoreEntitySet="CargosSet">
+                <ScalarProperty Name="Cod" ColumnName="Cod" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="jefe" ColumnName="jefe" />
+                <ScalarProperty Name="tipo_de_area" ColumnName="tipo_de_area" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DepartamentoAreaSet">
+            <EntityTypeMapping TypeName="Drummond01Model.DepartamentoAreaSet">
+              <MappingFragment StoreEntitySet="DepartamentoAreaSet">
+                <ScalarProperty Name="IdDepArea" ColumnName="IdDepArea" />
+                <ScalarProperty Name="departamentoId" ColumnName="departamentoId" />
+                <ScalarProperty Name="AreaCod" ColumnName="AreaCod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DepartamentoSedeSet">
+            <EntityTypeMapping TypeName="Drummond01Model.DepartamentoSedeSet">
+              <MappingFragment StoreEntitySet="DepartamentoSedeSet">
+                <ScalarProperty Name="IdDepSede" ColumnName="IdDepSede" />
+                <ScalarProperty Name="SedeId" ColumnName="SedeId" />
+                <ScalarProperty Name="departamentoId" ColumnName="departamentoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="departamentoSet">
+            <EntityTypeMapping TypeName="Drummond01Model.departamentoSet">
+              <MappingFragment StoreEntitySet="departamentoSet">
+                <ScalarProperty Name="Cod" ColumnName="Cod" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmpleadosSet">
+            <EntityTypeMapping TypeName="Drummond01Model.EmpleadosSet">
+              <MappingFragment StoreEntitySet="EmpleadosSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GrupoAreaIdGrupoArea" ColumnName="GrupoAreaIdGrupoArea" />
+                <ScalarProperty Name="CargosCod" ColumnName="CargosCod" />
+                <ScalarProperty Name="Nit" ColumnName="Nit" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="Lider" ColumnName="Lider" />
+                <ScalarProperty Name="JefeCod" ColumnName="JefeCod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GrupoAreas">
+            <EntityTypeMapping TypeName="Drummond01Model.GrupoAreas">
+              <MappingFragment StoreEntitySet="GrupoAreas">
+                <ScalarProperty Name="IdGrupoArea" ColumnName="IdGrupoArea" />
+                <ScalarProperty Name="AreaCod" ColumnName="AreaCod" />
+                <ScalarProperty Name="GrupoId" ColumnName="GrupoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GrupoSet">
+            <EntityTypeMapping TypeName="Drummond01Model.GrupoSet">
+              <MappingFragment StoreEntitySet="GrupoSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SedeSet">
+            <EntityTypeMapping TypeName="Drummond01Model.SedeSet">
+              <MappingFragment StoreEntitySet="SedeSet">
+                <ScalarProperty Name="Cod" ColumnName="Cod" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubareaSet">
+            <EntityTypeMapping TypeName="Drummond01Model.SubareaSet">
+              <MappingFragment StoreEntitySet="SubareaSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GrupoId" ColumnName="GrupoId" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Drummond01Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

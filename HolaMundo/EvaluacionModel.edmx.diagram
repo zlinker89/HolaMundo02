@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bee354e1995d42cd9d53a42146539e02" Name="Diagram1">
+        <EntityTypeShape EntityType="Drummond01Model.Areas" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Drummond01Model.AreaSubareas" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Drummond01Model.CargosSet" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Drummond01Model.DepartamentoAreaSet" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Drummond01Model.DepartamentoSedeSet" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Drummond01Model.departamentoSet" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Drummond01Model.EmpleadosSet" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Drummond01Model.GrupoAreas" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Drummond01Model.GrupoSet" Width="1.5" PointX="1.5" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Drummond01Model.SedeSet" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Drummond01Model.SubareaSet" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Drummond01Model.sysdiagrams" Width="1.5" PointX="5.75" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="Drummond01Model.FK_AreaAreaSubarea" ManuallyRouted="false" />
+        <AssociationConnector Association="Drummond01Model.FK_AreaDepartamentoArea" ManuallyRouted="false" />
+        <AssociationConnector Association="Drummond01Model.FK_AreaGrupoArea" ManuallyRouted="false" />
+        <AssociationConnector Association="Drummond01Model.FK_SubareaAreaSubarea" ManuallyRouted="false" />
+        <AssociationConnector Association="Drummond01Model.FK_CargosEmpleados" ManuallyRouted="false" />
+        <AssociationConnector Association="Drummond01Model.FK_departamentoDepartamentoArea" ManuallyRouted="false" />
+        <AssociationConnector Association="Drummond01Model.FK_departamentoDepartamentoSede" ManuallyRouted="false" />
+        <AssociationConnector Association="Drummond01Model.FK_SedeDepartamentoSede" ManuallyRouted="false" />
+        <AssociationConnector Association="Drummond01Model.FK_GrupoAreaEmpleados" ManuallyRouted="false" />
+        <AssociationConnector Association="Drummond01Model.FK_GrupoGrupoArea" ManuallyRouted="false" />
+        <AssociationConnector Association="Drummond01Model.FK_GrupoSubarea" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
